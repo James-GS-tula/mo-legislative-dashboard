@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Bill {
+  id             String   @id // legiscan bill_id
+  state          String
+  sessionId      Int
+  sessionName    String
+  billNumber     String
+  title          String
+  chamberOrigin  String   // "house" | "senate"
+  changeHash     String?
+  status         Int?
+  statusDate     DateTime?
+  lastActionDate DateTime?
+  lastActionText String?
+  passedHouse    Boolean  @default(false)
+  passedSenate   Boolean  @default(false)
+
+  sponsors       SponsorOnBill[]
+  updatedAt      DateTime @updatedAt
+
+  @@index([state, sessionId])
+  @@index([chamberOrigin])
+  @@index([changeHash])
+}
+
+model Sponsor {
+  id       String @id // people_id (preferred)
+  name     String
+  party    String?
+  chamber  String?
+  district String?
+
+  bills    SponsorOnBill[]
+}
+
+model SponsorOnBill {
+  billId    String
+  sponsorId String
+  isPrimary Boolean @default(false)
+
+  bill      Bill    @relation(fields: [billId], references: [id])
+  sponsor   Sponsor @relation(fields: [sponsorId], references: [id])
+
+  @@id([billId, sponsorId])
+}

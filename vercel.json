@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/sync?secret=claycountydems-dashboard-2026",
+      "path": "/api/cron/sync?secret=claycountydems-dashboard-2026-secret-9X4kP21",
       "schedule": "0 9 * * *"
     }
   ]

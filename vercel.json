@@ -1,8 +1,5 @@
 {
   "crons": [
-    {
-      "path": "/api/cron/sync?secret=YOUR_CRON_SECRET",
-      "schedule": "15 * * * *"
-    }
+    { "path": "/api/cron/sync?secret=YOUR_CRON_SECRET", "schedule": "15 9 * * *" }
   ]
 }

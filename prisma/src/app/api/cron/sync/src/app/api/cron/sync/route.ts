@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { legiscan, normalizeChamber, computePassFlags } from "@/lib/legiscan";
-import { getCurrentMOSession } from "@/lib/session";
+import { legiscan, normalizeChamber, computePassFlags } from "../../../../lib/legiscan";
+import { getCurrentMOSession } from "../../../../lib/session";
 
 const prisma = new PrismaClient();
 
